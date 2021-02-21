@@ -6,10 +6,14 @@ class T {
 }
 
 
+        
 template<T>
 void func<T>() { T t; }
 class T {
     void make(){
+        
         func<T>(); // error
     }
 }
+
+// func<T> should be callable from within T and only within T - or a friend of T
