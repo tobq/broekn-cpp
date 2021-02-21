@@ -1,0 +1,14 @@
+struct A {
+    A(int);
+};
+class B {
+    A a; // no error
+    B() : a(1) {
+    }
+};
+class C {
+    C() {
+        A a; // error
+        a = 1;
+    }
+};
