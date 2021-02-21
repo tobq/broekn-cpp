@@ -1,0 +1,45 @@
+class A {
+    T t;
+    
+    void mutate() const {
+        t.non_const(); // error (expected)
+    }
+}
+
+class B {
+    T& t;
+    
+    void mutate() const {
+        t.non_const(); // no-error (the problem)
+    }
+}
+
+
+// MY FIX
+/**
+ * `opeator.()` not here yet, so using `opertaot->()` until then
+ */
+template<class T>
+struct ref {
+
+    ref(T &ref) : r(&ref) {}
+
+    auto operator->() {
+        return r;
+    }
+
+    auto operator->() const {
+        return (T const *const) r;
+    }
+
+private:
+    T *const r;
+};
+
+class C {
+    T& t;
+    
+    void mutate() const {
+        t->non_const(); // error (fixed)
+    }
+}
