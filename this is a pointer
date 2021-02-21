@@ -1,0 +1,8 @@
+auto thiz = *this
+
+class A {
+    void method() const {
+        decltype(this) == A const* // trickery is done by the language for this const propagation on `this` to happen, instead of it naturally propagating with like a field 
+                                   // related https://github.com/tobq/broken-cpp/blob/main/ref-member-const-propagation 
+    }
+}
