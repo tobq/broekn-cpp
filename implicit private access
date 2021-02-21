@@ -1,0 +1,15 @@
+void func(std::function<void()>);
+class T {
+    void make(){
+        func([]{ T t; }); // no-error
+    }
+}
+
+
+template<T>
+void func<T>() { T t; }
+class T {
+    void make(){
+        func<T>(); // error
+    }
+}
