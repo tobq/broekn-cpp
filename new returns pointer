@@ -1,0 +1,3 @@
+decltype(new T[]) == T* != T(&)[]
+
+// T(&)[] is aggresively flattened to T*
