@@ -10,12 +10,11 @@ class B {
     T& t;
     
     void mutate() const {
-        t.non_const(); // no-error (the problem)
+        t.non_const(); // no-error
     }
 }
 
 
-// MY FIX
 /**
  * `opeator.()` not here yet, so using `opertaot->()` until then
  */
